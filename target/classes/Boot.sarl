@@ -1,17 +1,20 @@
 /** 
  * 
  */
+
 import io.sarl.core.AgentKilled
 import io.sarl.core.AgentSpawned
 import io.sarl.core.ContextJoined
 import io.sarl.core.ContextLeft
 import io.sarl.core.Destroy
 import io.sarl.core.Initialize
+import io.sarl.core.Lifecycle
 import io.sarl.core.Logging
 import io.sarl.core.MemberJoined
 import io.sarl.core.MemberLeft
-import io.sarl.core.Lifecycle
-import java.awt.Color
+import java.text.SimpleDateFormat
+import java.util.Date
+import utils.ConsoleColors
 
 /** 
  * @author Emilien
@@ -21,20 +24,25 @@ agent Boot {
 	uses Logging, Lifecycle
 
 	on Initialize {
+		System.out.println(ConsoleColors.RESET);
 		// Event trigger before the agent begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
 		loggingName = "Boot Agent"
-		info("The agent was started.")
-		info("Spawn Environment Agent")
-		typeof(Environment).spawn()
+		print("The agent was started.")
+		print("Spawn Environment Agent")
+		typeof(Environment).spawn(Integer.parseInt(occurrence.parameters.get(0).toString), Integer.parseInt(occurrence.parameters.get(1).toString))
 		
 		killMe
+	}
+	
+	def print(s : String) {
+		System.out.println(ConsoleColors.RED + "[" + (new SimpleDateFormat("HH:mm:ss")).format(new Date()) + ", Boot Agent] " +  s)
 	}
 
 	on Destroy {
 		// Event trigger when the agent is destroyed from the system.
 		// You should put all the resource releasing statements in this block of code.
-		info("The agent was stopped.")
+		print("The agent was stopped.")
 	}
 
 	on AgentSpawned {

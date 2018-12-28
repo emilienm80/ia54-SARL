@@ -13,6 +13,9 @@ import io.sarl.core.MemberLeft
 import java.util.UUID
 import io.sarl.core.Lifecycle
 import io.sarl.core.DefaultContextInteractions
+import java.text.SimpleDateFormat
+import java.util.Date
+import utils.ConsoleColors
 
 /** 
  * @author Emilien
@@ -29,20 +32,29 @@ agent People {
 		// You should put all the initialization statements in this block of code.
 		ID = occurrence.parameters.get(0) as Integer
 		SelectedPartner = occurrence.parameters.get(1) as UUID
-		loggingName = "People " + ID + " " + SelectedPartner
-		info("The agent was started.")
+		loggingName = "People " + ID
+		print("The agent was started.")
 	}
 	
 	on toPeople [SelectedPartner === occurrence.source.UUID] {
-		new toEnvironment().emit
-		info("receive toPeople")
+		/* Ici, on réalise ce que doit faire une personne */ 
+		print("receive toPeople : " + occurrence.id + " - send answer")
+		new toEnvironment(occurrence.id).emit
+	}
+
+	def print(s : String) {
+		System.out.println(ConsoleColors.PURPLE + "[" + (new SimpleDateFormat("HH:mm:ss")).format(new Date()) +
+			", People Agent " + ID + "] " + s)
+	}
+
+	on killYou{
 		killMe
 	}
 
 	on Destroy {
 		// Event trigger when the agent is destroyed from the system.
 		// You should put all the resource releasing statements in this block of code.
-		info("The agent was stopped.")
+		print("The agent was stopped.")
 	}
 
 	on AgentSpawned {

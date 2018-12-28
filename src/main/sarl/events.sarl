@@ -8,11 +8,18 @@
  */
 event events
 
-event toEnvironment
+event toEnvironment{
+	val id : int
+	new (id : int){
+		this.id = id
+	}
+}
+
+event killYou
 
 event toPeople {
-	/*val uuid : int
-	new (uuid : int){
-		this.uuid = uuid
-	}*/
+	val id : int
+	new (id : int){
+		this.id = id
+	}
 }
