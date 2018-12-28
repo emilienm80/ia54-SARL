@@ -24,7 +24,7 @@ agent Environment {
 	uses Logging, Lifecycle, DefaultContextInteractions
 	
 	var maxPeople = 0
-	var messages = 0
+	var messages : int
 	var messageSend = 0
 	var messageMax : int
 
@@ -41,7 +41,6 @@ agent Environment {
 		new toPeople(messageSend).emit
 		print("send toPeople Message : " + messageSend)
 	}
-	
 	on toEnvironment [messageSend === occurrence.id]{
 		messages++
 		print("reveice toEnvironment : " + occurrence.id)

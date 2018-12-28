@@ -43,7 +43,7 @@ agent People {
 	}
 
 	def print(s : String) {
-		System.out.println(ConsoleColors.PURPLE + "[" + (new SimpleDateFormat("HH:mm:ss")).format(new Date()) +
+		System.out.println(ConsoleColors.BLUE + "[" + (new SimpleDateFormat("HH:mm:ss")).format(new Date()) +
 			", People Agent " + ID + "] " + s)
 	}
 

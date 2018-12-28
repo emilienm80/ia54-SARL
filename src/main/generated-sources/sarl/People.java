@@ -68,7 +68,7 @@ public class People extends Agent {
     SimpleDateFormat _simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
     Date _date = new Date();
     String _format = _simpleDateFormat.format(_date);
-    System.out.println(((((((ConsoleColors.PURPLE + "[") + _format) + 
+    System.out.println(((((((ConsoleColors.BLUE + "[") + _format) + 
       ", People Agent ") + Integer.valueOf(this.ID)) + "] ") + s));
   }
   

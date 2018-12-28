@@ -38,7 +38,7 @@ import utils.ConsoleColors;
 public class Environment extends Agent {
   private int maxPeople = 0;
   
-  private int messages = 0;
+  private int messages;
   
   private int messageSend = 0;
   
