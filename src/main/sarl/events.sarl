@@ -1,0 +1,18 @@
+/** 
+ * 
+ */
+
+/** 
+ * @author Emilien
+ * 
+ */
+event events
+
+event toEnvironment
+
+event toPeople {
+	/*val uuid : int
+	new (uuid : int){
+		this.uuid = uuid
+	}*/
+}
