@@ -11,8 +11,11 @@ import org.eclipse.xtext.xbase.lib.util.ToStringBuilder;
 public class toEnvironment extends Event {
   public final int id;
   
-  public toEnvironment(final int id) {
+  public final int idpeople;
+  
+  public toEnvironment(final int id, final int idpeople) {
     this.id = id;
+    this.idpeople = idpeople;
   }
   
   @Override
@@ -28,6 +31,8 @@ public class toEnvironment extends Event {
     toEnvironment other = (toEnvironment) obj;
     if (other.id != this.id)
       return false;
+    if (other.idpeople != this.idpeople)
+      return false;
     return super.equals(obj);
   }
   
@@ -38,6 +43,7 @@ public class toEnvironment extends Event {
     int result = super.hashCode();
     final int prime = 31;
     result = prime * result + this.id;
+    result = prime * result + this.idpeople;
     return result;
   }
   
@@ -49,8 +55,9 @@ public class toEnvironment extends Event {
   protected void toString(final ToStringBuilder builder) {
     super.toString(builder);
     builder.add("id", this.id);
+    builder.add("idpeople", this.idpeople);
   }
   
   @SyntheticMember
-  private final static long serialVersionUID = 591716768L;
+  private final static long serialVersionUID = 862912966L;
 }

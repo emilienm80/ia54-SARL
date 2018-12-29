@@ -10,8 +10,10 @@ event events
 
 event toEnvironment{
 	val id : int
-	new (id : int){
+	val idpeople : int 
+	new (id : int, idpeople : int){
 		this.id = id
+		this.idpeople = idpeople
 	}
 }
 

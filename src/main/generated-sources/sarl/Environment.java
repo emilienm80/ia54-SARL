@@ -44,6 +44,8 @@ public class Environment extends Agent {
   
   private int messageMax;
   
+  private int compt = 0;
+  
   private void $behaviorUnit$Initialize$0(final Initialize occurrence) {
     Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
     _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.setLoggingName("Environment Agent");
@@ -56,15 +58,12 @@ public class Environment extends Agent {
       Lifecycle _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER = this.$castSkill(Lifecycle.class, (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE == null || this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE = this.$getSkill(Lifecycle.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE);
       _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER.spawn(People.class, Integer.valueOf(i), this.getID());
     }
-    DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
-    _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(new toPeople(this.messageSend));
-    this.print(("send toPeople Message : " + Integer.valueOf(this.messageSend)));
   }
   
   private void $behaviorUnit$toEnvironment$1(final toEnvironment occurrence) {
     this.messages++;
-    this.print(("reveice toEnvironment : " + Integer.valueOf(occurrence.id)));
-    if ((this.messages == this.maxPeople)) {
+    this.print(((("reveice toEnvironment : " + Integer.valueOf(occurrence.id)) + " | ") + Integer.valueOf(occurrence.idpeople)));
+    if ((this.messages <= this.maxPeople)) {
       this.messageSend++;
       if ((this.messageSend < this.messageMax)) {
         DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
@@ -99,6 +98,12 @@ public class Environment extends Agent {
   }
   
   private void $behaviorUnit$AgentSpawned$3(final AgentSpawned occurrence) {
+    this.compt++;
+    if ((this.compt <= this.maxPeople)) {
+      DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
+      _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(new toPeople(this.messageSend));
+      this.print(("send toPeople Message : " + Integer.valueOf(this.messageSend)));
+    }
   }
   
   private void $behaviorUnit$AgentKilled$4(final AgentKilled occurrence) {
@@ -254,6 +259,8 @@ public class Environment extends Agent {
       return false;
     if (other.messageMax != this.messageMax)
       return false;
+    if (other.compt != this.compt)
+      return false;
     return super.equals(obj);
   }
   
@@ -267,6 +274,7 @@ public class Environment extends Agent {
     result = prime * result + this.messages;
     result = prime * result + this.messageSend;
     result = prime * result + this.messageMax;
+    result = prime * result + this.compt;
     return result;
   }
   

@@ -37,9 +37,11 @@ agent People {
 	}
 	
 	on toPeople [SelectedPartner === occurrence.source.UUID] {
-		/* Ici, on réalise ce que doit faire une personne */ 
+		/*
+		 * People : here
+		 */
 		print("receive toPeople : " + occurrence.id + " - send answer")
-		new toEnvironment(occurrence.id).emit
+		new toEnvironment(occurrence.id, ID).emit
 	}
 
 	def print(s : String) {

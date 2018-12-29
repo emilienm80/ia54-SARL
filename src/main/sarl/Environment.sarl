@@ -27,6 +27,7 @@ agent Environment {
 	var messages : int
 	var messageSend = 0
 	var messageMax : int
+	var compt = 0
 
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
@@ -38,13 +39,12 @@ agent Environment {
 		for(var i = 0; i < maxPeople; i++){
 			typeof(People).spawn(i, this.ID)
 		}
-		new toPeople(messageSend).emit
-		print("send toPeople Message : " + messageSend)
 	}
+	
 	on toEnvironment [messageSend === occurrence.id]{
 		messages++
-		print("reveice toEnvironment : " + occurrence.id)
-		if(messages == maxPeople){
+		print("reveice toEnvironment : " + occurrence.id + " | " + occurrence.idpeople)
+		if(messages <= maxPeople){
 			messageSend ++
 			if(messageSend < messageMax){
 				new toPeople(messageSend).emit
@@ -70,6 +70,11 @@ agent Environment {
 
 	on AgentSpawned {
 		// A new agent has been spawned in our context.
+		compt ++
+		if (compt <= maxPeople) {
+			new toPeople(messageSend).emit
+			print("send toPeople Message : " + messageSend)
+		}
 	}
 
 	on AgentKilled {
