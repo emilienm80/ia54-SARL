@@ -20,7 +20,4 @@ public class events extends Event {
   public events(final Address source) {
     super(source);
   }
-  
-  @SyntheticMember
-  private final static long serialVersionUID = 588368462L;
 }

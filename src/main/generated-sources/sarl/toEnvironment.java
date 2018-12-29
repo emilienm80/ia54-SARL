@@ -57,7 +57,4 @@ public class toEnvironment extends Event {
     builder.add("id", this.id);
     builder.add("idpeople", this.idpeople);
   }
-  
-  @SyntheticMember
-  private final static long serialVersionUID = 862912966L;
 }

@@ -39,19 +39,24 @@ agent Environment {
 		for(var i = 0; i < maxPeople; i++){
 			typeof(People).spawn(i, this.ID)
 		}
+		print("kdslvjlk")
 	}
 	
 	on toEnvironment [messageSend === occurrence.id]{
 		messages++
-		print("reveice toEnvironment : " + occurrence.id + " | " + occurrence.idpeople)
+		//print("reveice from People : " + occurrence.id + " |  ID People : " + occurrence.idpeople)
 		if(messages <= maxPeople){
 			messageSend ++
 			if(messageSend < messageMax){
+				/*
+				 * Environment : here 
+				 */
 				new toPeople(messageSend).emit
-				print("send toPeople : " + messageSend)
+				//print("send toPeople : " + messageSend)
 				messages = 0
 			} else {
 				new killYou().emit
+				print("kdslvjlk")
 				killMe
 			}
 		}

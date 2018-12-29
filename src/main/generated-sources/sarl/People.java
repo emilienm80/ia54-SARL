@@ -22,7 +22,6 @@ import io.sarl.lang.util.ClearableReference;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Objects;
 import java.util.UUID;
 import javax.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -52,7 +51,7 @@ public class People extends Agent {
   }
   
   private void $behaviorUnit$toPeople$1(final toPeople occurrence) {
-    this.print((("receive toPeople : " + Integer.valueOf(occurrence.id)) + " - send answer"));
+    this.print((("receive from Environment : " + Integer.valueOf(occurrence.id)) + " - send answer"));
     DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
     _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(new toEnvironment(occurrence.id, this.ID));
   }
@@ -60,8 +59,8 @@ public class People extends Agent {
   @SyntheticMember
   @Pure
   private boolean $behaviorUnitGuard$toPeople$1(final toPeople it, final toPeople occurrence) {
-    UUID _uUID = occurrence.getSource().getUUID();
-    return (this.SelectedPartner == _uUID);
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from boolean to boolean");
   }
   
   protected void print(final String s) {
@@ -230,30 +229,17 @@ public class People extends Agent {
   @Pure
   @SyntheticMember
   public boolean equals(final Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    People other = (People) obj;
-    if (!Objects.equals(this.SelectedPartner, other.SelectedPartner)) {
-      return false;
-    }
-    if (other.ID != this.ID)
-      return false;
-    return super.equals(obj);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe return type is incompatible with equals(Object). Current method has the return type: boolean. The super method has the return type: boolean."
+      + "\nThe return type is incompatible with equals(Object). Current method has the return type: boolean. The super method has the return type: boolean.");
   }
   
   @Override
   @Pure
   @SyntheticMember
   public int hashCode() {
-    int result = super.hashCode();
-    final int prime = 31;
-    result = prime * result + Objects.hashCode(this.SelectedPartner);
-    result = prime * result + this.ID;
-    return result;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe return type is incompatible with equals(Object). Current method has the return type: boolean. The super method has the return type: boolean.");
   }
   
   @SyntheticMember

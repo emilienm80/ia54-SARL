@@ -40,7 +40,7 @@ agent People {
 		/*
 		 * People : here
 		 */
-		print("receive toPeople : " + occurrence.id + " - send answer")
+		print("receive from Environment : " + occurrence.id + " - send answer")
 		new toEnvironment(occurrence.id, ID).emit
 	}
 
