@@ -21,6 +21,8 @@ import utils.ConsoleColors
  * @author Emilien
  * 
  */
+ 
+ // une personne
 agent People {
 	uses Logging, Lifecycle, DefaultContextInteractions
 	
@@ -50,6 +52,10 @@ agent People {
 	}
 
 	on killYou{
+		killMe
+	}
+	
+	on killAll{
 		killMe
 	}
 

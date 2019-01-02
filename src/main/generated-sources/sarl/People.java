@@ -22,6 +22,7 @@ import io.sarl.lang.util.ClearableReference;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 import javax.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -59,8 +60,8 @@ public class People extends Agent {
   @SyntheticMember
   @Pure
   private boolean $behaviorUnitGuard$toPeople$1(final toPeople it, final toPeople occurrence) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from boolean to boolean");
+    UUID _uUID = occurrence.getSource().getUUID();
+    return (this.SelectedPartner == _uUID);
   }
   
   protected void print(final String s) {
@@ -76,26 +77,31 @@ public class People extends Agent {
     _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER.killMe();
   }
   
-  private void $behaviorUnit$Destroy$3(final Destroy occurrence) {
+  private void $behaviorUnit$killAll$3(final killAll occurrence) {
+    Lifecycle _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER = this.$castSkill(Lifecycle.class, (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE == null || this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE = this.$getSkill(Lifecycle.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE);
+    _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER.killMe();
+  }
+  
+  private void $behaviorUnit$Destroy$4(final Destroy occurrence) {
     this.print("The agent was stopped.");
   }
   
-  private void $behaviorUnit$AgentSpawned$4(final AgentSpawned occurrence) {
+  private void $behaviorUnit$AgentSpawned$5(final AgentSpawned occurrence) {
   }
   
-  private void $behaviorUnit$AgentKilled$5(final AgentKilled occurrence) {
+  private void $behaviorUnit$AgentKilled$6(final AgentKilled occurrence) {
   }
   
-  private void $behaviorUnit$ContextJoined$6(final ContextJoined occurrence) {
+  private void $behaviorUnit$ContextJoined$7(final ContextJoined occurrence) {
   }
   
-  private void $behaviorUnit$ContextLeft$7(final ContextLeft occurrence) {
+  private void $behaviorUnit$ContextLeft$8(final ContextLeft occurrence) {
   }
   
-  private void $behaviorUnit$MemberJoined$8(final MemberJoined occurrence) {
+  private void $behaviorUnit$MemberJoined$9(final MemberJoined occurrence) {
   }
   
-  private void $behaviorUnit$MemberLeft$9(final MemberLeft occurrence) {
+  private void $behaviorUnit$MemberLeft$10(final MemberLeft occurrence) {
   }
   
   @Extension
@@ -156,7 +162,7 @@ public class People extends Agent {
   private void $guardEvaluator$ContextLeft(final ContextLeft occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextLeft$7(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextLeft$8(occurrence));
   }
   
   @SyntheticMember
@@ -164,7 +170,7 @@ public class People extends Agent {
   private void $guardEvaluator$ContextJoined(final ContextJoined occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextJoined$6(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextJoined$7(occurrence));
   }
   
   @SyntheticMember
@@ -172,7 +178,7 @@ public class People extends Agent {
   private void $guardEvaluator$MemberLeft(final MemberLeft occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberLeft$9(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberLeft$10(occurrence));
   }
   
   @SyntheticMember
@@ -180,7 +186,15 @@ public class People extends Agent {
   private void $guardEvaluator$AgentSpawned(final AgentSpawned occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentSpawned$4(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentSpawned$5(occurrence));
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
+  private void $guardEvaluator$killAll(final killAll occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$killAll$3(occurrence));
   }
   
   @SyntheticMember
@@ -198,7 +212,7 @@ public class People extends Agent {
   private void $guardEvaluator$Destroy(final Destroy occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Destroy$3(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Destroy$4(occurrence));
   }
   
   @SyntheticMember
@@ -214,7 +228,7 @@ public class People extends Agent {
   private void $guardEvaluator$AgentKilled(final AgentKilled occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentKilled$5(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentKilled$6(occurrence));
   }
   
   @SyntheticMember
@@ -222,24 +236,37 @@ public class People extends Agent {
   private void $guardEvaluator$MemberJoined(final MemberJoined occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberJoined$8(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberJoined$9(occurrence));
   }
   
   @Override
   @Pure
   @SyntheticMember
   public boolean equals(final Object obj) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe return type is incompatible with equals(Object). Current method has the return type: boolean. The super method has the return type: boolean."
-      + "\nThe return type is incompatible with equals(Object). Current method has the return type: boolean. The super method has the return type: boolean.");
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    People other = (People) obj;
+    if (!Objects.equals(this.SelectedPartner, other.SelectedPartner)) {
+      return false;
+    }
+    if (other.ID != this.ID)
+      return false;
+    return super.equals(obj);
   }
   
   @Override
   @Pure
   @SyntheticMember
   public int hashCode() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe return type is incompatible with equals(Object). Current method has the return type: boolean. The super method has the return type: boolean.");
+    int result = super.hashCode();
+    final int prime = 31;
+    result = prime * result + Objects.hashCode(this.SelectedPartner);
+    result = prime * result + this.ID;
+    return result;
   }
   
   @SyntheticMember

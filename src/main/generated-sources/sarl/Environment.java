@@ -23,11 +23,13 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
+import javafx.application.Application;
 import javax.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Inline;
 import org.eclipse.xtext.xbase.lib.Pure;
 import utils.ConsoleColors;
+import utils.MapsGraphic;
 
 /**
  * @author Emilien
@@ -58,21 +60,22 @@ public class Environment extends Agent {
       Lifecycle _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER = this.$castSkill(Lifecycle.class, (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE == null || this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE = this.$getSkill(Lifecycle.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE);
       _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER.spawn(People.class, Integer.valueOf(i), this.getID());
     }
-    this.print("kdslvjlk");
+    Application.launch(MapsGraphic.class);
   }
   
   private void $behaviorUnit$toEnvironment$1(final toEnvironment occurrence) {
     this.messages++;
+    this.print(((("reveice from People : " + Integer.valueOf(occurrence.id)) + " |  ID People : ") + Integer.valueOf(occurrence.idpeople)));
     if ((this.messages <= this.maxPeople)) {
       this.messageSend++;
       if ((this.messageSend < this.messageMax)) {
         DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
         _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(new toPeople(this.messageSend));
+        this.print(("send toPeople : " + Integer.valueOf(this.messageSend)));
         this.messages = 0;
       } else {
         DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_1 = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
         _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER_1.emit(new killYou());
-        this.print("kdslvjlk");
         Lifecycle _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER = this.$castSkill(Lifecycle.class, (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE == null || this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE = this.$getSkill(Lifecycle.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE);
         _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER.killMe();
       }
@@ -85,6 +88,11 @@ public class Environment extends Agent {
     return (this.messageSend == occurrence.id);
   }
   
+  private void $behaviorUnit$killAll$2(final killAll occurrence) {
+    Lifecycle _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER = this.$castSkill(Lifecycle.class, (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE == null || this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE = this.$getSkill(Lifecycle.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE);
+    _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER.killMe();
+  }
+  
   protected void print(final String s) {
     SimpleDateFormat _simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
     Date _date = new Date();
@@ -93,32 +101,32 @@ public class Environment extends Agent {
       ((((ConsoleColors.GREEN + "[") + _format) + ", Environment Agent] ") + s));
   }
   
-  private void $behaviorUnit$Destroy$2(final Destroy occurrence) {
+  private void $behaviorUnit$Destroy$3(final Destroy occurrence) {
     this.print("The agent was stopped.");
   }
   
-  private void $behaviorUnit$AgentSpawned$3(final AgentSpawned occurrence) {
+  private void $behaviorUnit$AgentSpawned$4(final AgentSpawned occurrence) {
     this.compt++;
     if ((this.compt <= this.maxPeople)) {
       DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
       _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(new toPeople(this.messageSend));
-      this.print(("send toPeople Message : " + Integer.valueOf(this.messageSend)));
+      this.print(("send to People Message : " + Integer.valueOf(this.messageSend)));
     }
   }
   
-  private void $behaviorUnit$AgentKilled$4(final AgentKilled occurrence) {
+  private void $behaviorUnit$AgentKilled$5(final AgentKilled occurrence) {
   }
   
-  private void $behaviorUnit$ContextJoined$5(final ContextJoined occurrence) {
+  private void $behaviorUnit$ContextJoined$6(final ContextJoined occurrence) {
   }
   
-  private void $behaviorUnit$ContextLeft$6(final ContextLeft occurrence) {
+  private void $behaviorUnit$ContextLeft$7(final ContextLeft occurrence) {
   }
   
-  private void $behaviorUnit$MemberJoined$7(final MemberJoined occurrence) {
+  private void $behaviorUnit$MemberJoined$8(final MemberJoined occurrence) {
   }
   
-  private void $behaviorUnit$MemberLeft$8(final MemberLeft occurrence) {
+  private void $behaviorUnit$MemberLeft$9(final MemberLeft occurrence) {
   }
   
   @Extension
@@ -179,7 +187,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$ContextLeft(final ContextLeft occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextLeft$6(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextLeft$7(occurrence));
   }
   
   @SyntheticMember
@@ -187,7 +195,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$ContextJoined(final ContextJoined occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextJoined$5(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextJoined$6(occurrence));
   }
   
   @SyntheticMember
@@ -195,7 +203,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$MemberLeft(final MemberLeft occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberLeft$8(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberLeft$9(occurrence));
   }
   
   @SyntheticMember
@@ -203,7 +211,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$AgentSpawned(final AgentSpawned occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentSpawned$3(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentSpawned$4(occurrence));
   }
   
   @SyntheticMember
@@ -218,10 +226,18 @@ public class Environment extends Agent {
   
   @SyntheticMember
   @PerceptGuardEvaluator
+  private void $guardEvaluator$killAll(final killAll occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$killAll$2(occurrence));
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
   private void $guardEvaluator$Destroy(final Destroy occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Destroy$2(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Destroy$3(occurrence));
   }
   
   @SyntheticMember
@@ -229,7 +245,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$AgentKilled(final AgentKilled occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentKilled$4(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentKilled$5(occurrence));
   }
   
   @SyntheticMember
@@ -237,7 +253,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$MemberJoined(final MemberJoined occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberJoined$7(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberJoined$8(occurrence));
   }
   
   @Override

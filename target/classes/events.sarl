@@ -19,6 +19,8 @@ event toEnvironment{
 
 event killYou
 
+event killAll
+
 event toPeople {
 	val id : int
 	new (id : int){

@@ -15,11 +15,16 @@ import io.sarl.core.DefaultContextInteractions
 import utils.ConsoleColors
 import java.text.SimpleDateFormat
 import java.util.Date
+import utils.TheMap
+import javafx.application.Application
+import utils.MapsGraphic
 
 /** 
  * @author Emilien
  * 
  */
+ 
+ // l'agent Environnement
 agent Environment {
 	uses Logging, Lifecycle, DefaultContextInteractions
 	
@@ -39,12 +44,12 @@ agent Environment {
 		for(var i = 0; i < maxPeople; i++){
 			typeof(People).spawn(i, this.ID)
 		}
-		print("kdslvjlk")
+		Application.launch(MapsGraphic)
 	}
 	
 	on toEnvironment [messageSend === occurrence.id]{
 		messages++
-		//print("reveice from People : " + occurrence.id + " |  ID People : " + occurrence.idpeople)
+		print("reveice from People : " + occurrence.id + " |  ID People : " + occurrence.idpeople)
 		if(messages <= maxPeople){
 			messageSend ++
 			if(messageSend < messageMax){
@@ -52,14 +57,17 @@ agent Environment {
 				 * Environment : here 
 				 */
 				new toPeople(messageSend).emit
-				//print("send toPeople : " + messageSend)
+				print("send toPeople : " + messageSend)
 				messages = 0
 			} else {
 				new killYou().emit
-				print("kdslvjlk")
 				killMe
 			}
 		}
+	}
+	
+	on killAll{
+		killMe
 	}
 
 	def print(s : String) {
@@ -78,7 +86,7 @@ agent Environment {
 		compt ++
 		if (compt <= maxPeople) {
 			new toPeople(messageSend).emit
-			print("send toPeople Message : " + messageSend)
+			print("send to People Message : " + messageSend)
 		}
 	}
 

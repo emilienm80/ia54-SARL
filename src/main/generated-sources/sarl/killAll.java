@@ -4,20 +4,17 @@ import io.sarl.lang.annotation.SyntheticMember;
 import io.sarl.lang.core.Address;
 import io.sarl.lang.core.Event;
 
-/**
- * @author Emilien
- */
 @SarlSpecification("0.8")
 @SarlElementType(15)
 @SuppressWarnings("all")
-public class events extends Event {
+public class killAll extends Event {
   @SyntheticMember
-  public events() {
+  public killAll() {
     super();
   }
   
   @SyntheticMember
-  public events(final Address source) {
+  public killAll(final Address source) {
     super(source);
   }
   
