@@ -41,8 +41,7 @@ public class MapsGraphic extends Application {
   
   @Override
   public void stop() throws Exception {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field is is undefined for the type MapsGraphic");
+    super.stop();
   }
   
   @Override

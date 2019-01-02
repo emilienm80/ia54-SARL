@@ -42,6 +42,5 @@ class MapsGraphic extends Application{
 	@Override
 	def stop() throws Exception {
 		super.stop()
-		this.is
 	}
 }
