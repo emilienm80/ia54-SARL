@@ -15,9 +15,11 @@ import io.sarl.core.DefaultContextInteractions
 import utils.ConsoleColors
 import java.text.SimpleDateFormat
 import java.util.Date
-import utils.TheMap
 import javafx.application.Application
 import utils.MapsGraphic
+import io.sarl.util.OpenEventSpaceSpecification
+import java.util.UUID
+import utils.Viewer
 
 /** 
  * @author Emilien
@@ -45,6 +47,10 @@ agent Environment {
 			typeof(People).spawn(i, this.ID)
 		}
 		Application.launch(MapsGraphic)
+		var ctrl = new Viewer()
+		var ispace = defaultContext.createSpace(OpenEventSpaceSpecification, UUID.randomUUID)
+		ctrl.setGUISpace(ispace)
+		//ispace.register(asEventListener)
 	}
 	
 	on toEnvironment [messageSend === occurrence.id]{

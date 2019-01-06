@@ -19,6 +19,8 @@ import io.sarl.lang.core.BuiltinCapacitiesProvider;
 import io.sarl.lang.core.DynamicSkillProvider;
 import io.sarl.lang.core.Skill;
 import io.sarl.lang.util.ClearableReference;
+import io.sarl.util.OpenEventSpace;
+import io.sarl.util.OpenEventSpaceSpecification;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -30,6 +32,7 @@ import org.eclipse.xtext.xbase.lib.Inline;
 import org.eclipse.xtext.xbase.lib.Pure;
 import utils.ConsoleColors;
 import utils.MapsGraphic;
+import utils.Viewer;
 
 /**
  * @author Emilien
@@ -61,6 +64,10 @@ public class Environment extends Agent {
       _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER.spawn(People.class, Integer.valueOf(i), this.getID());
     }
     Application.launch(MapsGraphic.class);
+    Viewer ctrl = new Viewer();
+    DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
+    OpenEventSpace ispace = _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.getDefaultContext().<OpenEventSpace>createSpace(OpenEventSpaceSpecification.class, UUID.randomUUID());
+    ctrl.setGUISpace(ispace);
   }
   
   private void $behaviorUnit$toEnvironment$1(final toEnvironment occurrence) {
