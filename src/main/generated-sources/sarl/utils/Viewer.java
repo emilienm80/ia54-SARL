@@ -12,10 +12,6 @@ import java.util.UUID;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import org.eclipse.xtext.xbase.lib.Pure;
 
 /**
@@ -28,40 +24,6 @@ public class Viewer implements EventListener {
   private final UUID id = UUID.randomUUID();
   
   private OpenEventSpace ispace;
-  
-  private boolean launched = false;
-  
-  private boolean areaCreated = false;
-  
-  @FXML
-  private Canvas draw_zone;
-  
-  @FXML
-  private Label gravity_display;
-  
-  @FXML
-  private Label rocket_quantity_display;
-  
-  @FXML
-  private Label fire_quantity_display;
-  
-  @FXML
-  private ScrollBar gravity_input;
-  
-  @FXML
-  private ScrollBar rocket_quantity_input;
-  
-  @FXML
-  private ScrollBar fire_quantity_input;
-  
-  @FXML
-  private Button setup_button;
-  
-  @FXML
-  private Button launch_button;
-  
-  @FXML
-  private Button stop_button;
   
   /**
    * Emit a kill signal wen the app is exited
@@ -133,10 +95,6 @@ public class Viewer implements EventListener {
     if (!Objects.equals(this.id, other.id)) {
       return false;
     }
-    if (other.launched != this.launched)
-      return false;
-    if (other.areaCreated != this.areaCreated)
-      return false;
     return super.equals(obj);
   }
   
@@ -147,8 +105,6 @@ public class Viewer implements EventListener {
     int result = super.hashCode();
     final int prime = 31;
     result = prime * result + Objects.hashCode(this.id);
-    result = prime * result + (this.launched ? 1231 : 1237);
-    result = prime * result + (this.areaCreated ? 1231 : 1237);
     return result;
   }
   
