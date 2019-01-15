@@ -15,7 +15,6 @@ import io.sarl.core.Lifecycle
 import io.sarl.core.DefaultContextInteractions
 import java.text.SimpleDateFormat
 import java.util.Date
-import utils.ConsoleColors
 
 /** 
  * @author Emilien
@@ -35,20 +34,15 @@ agent People {
 		ID = occurrence.parameters.get(0) as Integer
 		SelectedPartner = occurrence.parameters.get(1) as UUID
 		loggingName = "People " + ID
-		print("The agent was started.")
+		info("The agent was started.")
 	}
 	
 	on toPeople [SelectedPartner === occurrence.source.UUID] {
 		/*
 		 * People : here
 		 */
-		print("receive from Environment : " + occurrence.id + " - send answer")
+		info("receive from Environment : " + occurrence.id + " - send answer")
 		new toEnvironment(occurrence.id, ID).emit
-	}
-
-	def print(s : String) {
-		System.out.println(ConsoleColors.BLUE + "[" + (new SimpleDateFormat("HH:mm:ss")).format(new Date()) +
-			", People Agent " + ID + "] " + s)
 	}
 
 	on killYou{

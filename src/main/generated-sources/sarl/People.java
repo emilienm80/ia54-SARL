@@ -19,16 +19,14 @@ import io.sarl.lang.core.BuiltinCapacitiesProvider;
 import io.sarl.lang.core.DynamicSkillProvider;
 import io.sarl.lang.core.Skill;
 import io.sarl.lang.util.ClearableReference;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 import javax.inject.Inject;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Inline;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Pure;
-import utils.ConsoleColors;
 
 /**
  * @author Emilien
@@ -48,11 +46,13 @@ public class People extends Agent {
     this.SelectedPartner = ((UUID) _get_1);
     Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
     _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.setLoggingName(("People " + Integer.valueOf(this.ID)));
-    this.print("The agent was started.");
+    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER_1 = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
+    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER_1.info("The agent was started.");
   }
   
   private void $behaviorUnit$toPeople$1(final toPeople occurrence) {
-    this.print((("receive from Environment : " + Integer.valueOf(occurrence.id)) + " - send answer"));
+    Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
+    _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info((("receive from Environment : " + Integer.valueOf(occurrence.id)) + " - send answer"));
     DefaultContextInteractions _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER = this.$castSkill(DefaultContextInteractions.class, (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS == null || this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS = this.$getSkill(DefaultContextInteractions.class)) : this.$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS);
     _$CAPACITY_USE$IO_SARL_CORE_DEFAULTCONTEXTINTERACTIONS$CALLER.emit(new toEnvironment(occurrence.id, this.ID));
   }
@@ -62,14 +62,6 @@ public class People extends Agent {
   private boolean $behaviorUnitGuard$toPeople$1(final toPeople it, final toPeople occurrence) {
     UUID _uUID = occurrence.getSource().getUUID();
     return (this.SelectedPartner == _uUID);
-  }
-  
-  protected void print(final String s) {
-    SimpleDateFormat _simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-    Date _date = new Date();
-    String _format = _simpleDateFormat.format(_date);
-    System.out.println(((((((ConsoleColors.BLUE + "[") + _format) + 
-      ", People Agent ") + Integer.valueOf(this.ID)) + "] ") + s));
   }
   
   private void $behaviorUnit$killYou$2(final killYou occurrence) {
@@ -83,7 +75,7 @@ public class People extends Agent {
   }
   
   private void $behaviorUnit$Destroy$4(final Destroy occurrence) {
-    this.print("The agent was stopped.");
+    InputOutput.<String>print("The agent was stopped.");
   }
   
   private void $behaviorUnit$AgentSpawned$5(final AgentSpawned occurrence) {

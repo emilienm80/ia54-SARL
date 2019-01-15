@@ -26,16 +26,12 @@ public class Viewer implements EventListener {
   private OpenEventSpace ispace;
   
   /**
-   * Emit a kill signal wen the app is exited
-   */
-  @Pure
-  public void cleanExit() {
-    if ((this.ispace != null)) {
-      System.exit(0);
-    }
-  }
-  
-  /**
+   * public def cleanExit() {
+   * if (this.ispace !== null)
+   * System.exit(0)
+   * }
+   * 
+   * /
    * Method invoked by the sarl agent to register the object on a space
    */
   public Address setGUISpace(final OpenEventSpace ispace) {
