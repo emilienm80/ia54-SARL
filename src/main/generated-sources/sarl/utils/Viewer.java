@@ -28,10 +28,10 @@ public class Viewer implements EventListener {
   /**
    * Emit a kill signal wen the app is exited
    */
+  @Pure
   public void cleanExit() {
     if ((this.ispace != null)) {
-      killAll _killAll = new killAll();
-      this.ispace.emit(this.id, _killAll, null);
+      System.exit(0);
     }
   }
   
@@ -51,9 +51,9 @@ public class Viewer implements EventListener {
    * Catch exit event
    */
   @FXML
+  @Pure
   public void exitApplication(final ActionEvent ievent) {
-    killAll _killAll = new killAll();
-    this.ispace.emit(this.id, _killAll, null);
+    System.exit(0);
     Platform.exit();
   }
   
