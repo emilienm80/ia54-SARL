@@ -15,6 +15,7 @@ import io.sarl.core.Lifecycle
 import io.sarl.core.DefaultContextInteractions
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Random
 
 /** 
  * @author Emilien
@@ -25,32 +26,55 @@ import java.util.Date
 agent People {
 	uses Logging, Lifecycle, DefaultContextInteractions
 	
+	
 	var SelectedPartner : UUID
 	var ID : int
+	var byEnv : boolean
+	var rand : Random
+	var go = false
 
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
 		// You should put all the initialization statements in this block of code.
-		ID = occurrence.parameters.get(0) as Integer
-		SelectedPartner = occurrence.parameters.get(1) as UUID
-		loggingName = "People " + ID
+		SelectedPartner = occurrence.parameters.get(0) as UUID
+		byEnv = occurrence.parameters.get(1) as Boolean
+		loggingName = "People"
 		info("The agent was started.")
 	}
 	
-	on toPeople [SelectedPartner === occurrence.source.UUID] {
+	/*on toPeople [SelectedPartner === occurrence.source.UUID] {
 		/*
 		 * People : here
 		 */
-		info("receive from Environment : " + occurrence.id + " - send answer")
+		//info("receive from Environment : " + occurrence.id + " - send answer")
+		/*
 		new toEnvironment(occurrence.id, ID).emit
+	}*/
+
+	on TrainHere{
+		rand = new Random()
+		if(rand.nextInt(100) > 95){
+			new WantToGoIn().emit
+			go = true
+		}else{
+			new DontWantToGoIn().emit
+		}
+	}
+	
+	on GoInTrain{
+		if(go){
+			info("Go in train")
+			killMe
+		}
 	}
 
 	on killYou{
-		killMe
+		//killMe
 	}
 	
+	
 	on killAll{
-		killMe
+		//killMe
 	}
 
 	on Destroy {

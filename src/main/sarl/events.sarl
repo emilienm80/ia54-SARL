@@ -27,3 +27,18 @@ event toPeople {
 		this.id = id
 	}
 }
+
+event TrainHere
+
+event WantToGoIn
+
+event DontWantToGoIn
+
+event GoInTrain
+
+event WantToGoOut{
+	val id : int
+	new(id : int){
+		this.id = id
+	}
+}

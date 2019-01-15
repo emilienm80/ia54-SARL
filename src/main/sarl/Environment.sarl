@@ -12,6 +12,8 @@ import io.sarl.core.MemberJoined
 import io.sarl.core.MemberLeft
 import io.sarl.core.Lifecycle
 import io.sarl.core.DefaultContextInteractions
+import utils.RailWayAgent
+import utils.AppearTrain
 
 /** 
  * @author Emilien
@@ -25,8 +27,8 @@ agent Environment {
 	var maxPeople = 0
 	var messages : int
 	var messageSend = 0
-	var messageMax : int
 	var compt = 0
+	var messageMax : int
 
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
@@ -35,9 +37,12 @@ agent Environment {
 		info("The agent was started.")
 		maxPeople = occurrence.parameters.get(0) as Integer
 		messageMax = occurrence.parameters.get(1) as Integer
+		typeof(RailWayAgent).spawn(this.ID, maxPeople)
+		typeof(AppearTrain).spawn(this.ID)
 		for(var i = 0; i < maxPeople; i++){
-			typeof(People).spawn(i, this.ID)
+			typeof(People).spawn(this.ID, true)
 		}
+	
 		/*Application.launch(MapsGraphic)
 		var ctrl = new Viewer()
 		var ispace = defaultContext.createSpace(OpenEventSpaceSpecification, UUID.randomUUID)
@@ -45,24 +50,23 @@ agent Environment {
 		ispace.register(asEventListener)*/
 	}
 	
-	on toEnvironment [messageSend === occurrence.id]{
+	/*on toEnvironment [messageSend === occurrence.id]{
 		messages++
-		info("reveice from People : " + occurrence.id + " |  ID People : " + occurrence.idpeople)
+		//info("reveice from People : " + occurrence.id + " |  ID People : " + occurrence.idpeople)
 		if(messages <= maxPeople){
 			messageSend ++
-			if(messageSend < messageMax){
-				/*
-				 * Environment : here 
-				 */
-				new toPeople(messageSend).emit
-				info("send toPeople : " + messageSend)
-				messages = 0
-			} else {
-				new killYou().emit
-				killMe
+			if(messages <= maxPeople){
+					messageSend ++
+					if(messageSend < messageMax){
+						new toPeople(messageSend).emit
+						info("send toPeople : " + messageSend)
+						messages = 0
+					} else {
+						messageSend = 0
+					}
+				}
 			}
-		}
-	}
+		}*/
 	
 	on killAll{
 		killMe
@@ -77,9 +81,9 @@ agent Environment {
 	on AgentSpawned {
 		// A new agent has been spawned in our context.
 		compt ++
-		if (compt <= maxPeople) {
-			new toPeople(messageSend).emit
-			info("send to People Message : " + messageSend)
+		if (compt <= maxPeople + 2) {
+			//new toPeople(messageSend).emit
+			//info("send to People Message : " + messageSend)
 		}
 	}
 
