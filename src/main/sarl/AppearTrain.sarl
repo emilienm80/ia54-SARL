@@ -18,7 +18,6 @@ import io.sarl.core.Lifecycle
 import io.sarl.core.DefaultContextInteractions
 import java.util.Timer
 import java.util.TimerTask
-import io.sarl.lang.annotation.SyntheticMember
 
 /** 
  * @author Emilien

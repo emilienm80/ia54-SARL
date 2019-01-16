@@ -13,8 +13,6 @@ import io.sarl.core.MemberLeft
 import java.util.UUID
 import io.sarl.core.Lifecycle
 import io.sarl.core.DefaultContextInteractions
-import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Random
 
 /** 

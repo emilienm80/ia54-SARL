@@ -46,6 +46,8 @@ agent RailWayAgent {
 		toGo++
 		if((toGo + notToGo) >= maxPeople){
 			new GoInTrain().emit
+			maxPeople = maxPeople - toGo
+			new resetMaxPeople(maxPeople).emit
 		}
 	}
 	
@@ -58,6 +60,7 @@ agent RailWayAgent {
 		if ((toGo + notToGo) >= maxPeople) {
 			new GoInTrain().emit
 			maxPeople = maxPeople - toGo
+			new resetMaxPeople(maxPeople).emit
 		}
 	}
 

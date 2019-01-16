@@ -50,6 +50,10 @@ agent Environment {
 		ispace.register(asEventListener)*/
 	}
 	
+	on resetMaxPeople{
+		maxPeople = occurrence.id
+	}
+	
 	/*on toEnvironment [messageSend === occurrence.id]{
 		messages++
 		//info("reveice from People : " + occurrence.id + " |  ID People : " + occurrence.idpeople)

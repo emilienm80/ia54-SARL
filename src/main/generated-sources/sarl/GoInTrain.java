@@ -17,7 +17,4 @@ public class GoInTrain extends Event {
   public GoInTrain(final Address source) {
     super(source);
   }
-  
-  @SyntheticMember
-  private final static long serialVersionUID = 588368462L;
 }

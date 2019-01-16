@@ -64,35 +64,39 @@ public class Environment extends Agent {
     }
   }
   
-  private void $behaviorUnit$killAll$1(final killAll occurrence) {
+  private void $behaviorUnit$resetMaxPeople$1(final resetMaxPeople occurrence) {
+    this.maxPeople = occurrence.id;
+  }
+  
+  private void $behaviorUnit$killAll$2(final killAll occurrence) {
     Lifecycle _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER = this.$castSkill(Lifecycle.class, (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE == null || this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE = this.$getSkill(Lifecycle.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE);
     _$CAPACITY_USE$IO_SARL_CORE_LIFECYCLE$CALLER.killMe();
   }
   
-  private void $behaviorUnit$Destroy$2(final Destroy occurrence) {
+  private void $behaviorUnit$Destroy$3(final Destroy occurrence) {
     Logging _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER = this.$castSkill(Logging.class, (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING == null || this.$CAPACITY_USE$IO_SARL_CORE_LOGGING.get() == null) ? (this.$CAPACITY_USE$IO_SARL_CORE_LOGGING = this.$getSkill(Logging.class)) : this.$CAPACITY_USE$IO_SARL_CORE_LOGGING);
     _$CAPACITY_USE$IO_SARL_CORE_LOGGING$CALLER.info("The agent was stopped.");
   }
   
-  private void $behaviorUnit$AgentSpawned$3(final AgentSpawned occurrence) {
+  private void $behaviorUnit$AgentSpawned$4(final AgentSpawned occurrence) {
     this.compt++;
     if ((this.compt <= (this.maxPeople + 2))) {
     }
   }
   
-  private void $behaviorUnit$AgentKilled$4(final AgentKilled occurrence) {
+  private void $behaviorUnit$AgentKilled$5(final AgentKilled occurrence) {
   }
   
-  private void $behaviorUnit$ContextJoined$5(final ContextJoined occurrence) {
+  private void $behaviorUnit$ContextJoined$6(final ContextJoined occurrence) {
   }
   
-  private void $behaviorUnit$ContextLeft$6(final ContextLeft occurrence) {
+  private void $behaviorUnit$ContextLeft$7(final ContextLeft occurrence) {
   }
   
-  private void $behaviorUnit$MemberJoined$7(final MemberJoined occurrence) {
+  private void $behaviorUnit$MemberJoined$8(final MemberJoined occurrence) {
   }
   
-  private void $behaviorUnit$MemberLeft$8(final MemberLeft occurrence) {
+  private void $behaviorUnit$MemberLeft$9(final MemberLeft occurrence) {
   }
   
   @Extension
@@ -153,7 +157,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$ContextLeft(final ContextLeft occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextLeft$6(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextLeft$7(occurrence));
   }
   
   @SyntheticMember
@@ -161,7 +165,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$ContextJoined(final ContextJoined occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextJoined$5(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$ContextJoined$6(occurrence));
   }
   
   @SyntheticMember
@@ -169,7 +173,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$MemberLeft(final MemberLeft occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberLeft$8(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberLeft$9(occurrence));
   }
   
   @SyntheticMember
@@ -177,7 +181,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$AgentSpawned(final AgentSpawned occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentSpawned$3(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentSpawned$4(occurrence));
   }
   
   /**
@@ -204,7 +208,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$killAll(final killAll occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$killAll$1(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$killAll$2(occurrence));
   }
   
   @SyntheticMember
@@ -212,7 +216,15 @@ public class Environment extends Agent {
   private void $guardEvaluator$Destroy(final Destroy occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Destroy$2(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$Destroy$3(occurrence));
+  }
+  
+  @SyntheticMember
+  @PerceptGuardEvaluator
+  private void $guardEvaluator$resetMaxPeople(final resetMaxPeople occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
+    assert occurrence != null;
+    assert ___SARLlocal_runnableCollection != null;
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$resetMaxPeople$1(occurrence));
   }
   
   @SyntheticMember
@@ -220,7 +232,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$AgentKilled(final AgentKilled occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentKilled$4(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$AgentKilled$5(occurrence));
   }
   
   @SyntheticMember
@@ -228,7 +240,7 @@ public class Environment extends Agent {
   private void $guardEvaluator$MemberJoined(final MemberJoined occurrence, final Collection<Runnable> ___SARLlocal_runnableCollection) {
     assert occurrence != null;
     assert ___SARLlocal_runnableCollection != null;
-    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberJoined$7(occurrence));
+    ___SARLlocal_runnableCollection.add(() -> $behaviorUnit$MemberJoined$8(occurrence));
   }
   
   @Override

@@ -50,7 +50,4 @@ public class WantToGoOut extends Event {
     super.toString(builder);
     builder.add("id", this.id);
   }
-  
-  @SyntheticMember
-  private final static long serialVersionUID = 591716768L;
 }

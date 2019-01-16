@@ -17,7 +17,4 @@ public class WantToGoIn extends Event {
   public WantToGoIn(final Address source) {
     super(source);
   }
-  
-  @SyntheticMember
-  private final static long serialVersionUID = 588368462L;
 }

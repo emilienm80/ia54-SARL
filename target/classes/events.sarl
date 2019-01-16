@@ -42,3 +42,10 @@ event WantToGoOut{
 		this.id = id
 	}
 }
+
+event resetMaxPeople{
+	val id : int
+	new(id : int){
+		this.id = id
+	}
+}

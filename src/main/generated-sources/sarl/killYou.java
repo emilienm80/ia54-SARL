@@ -17,7 +17,4 @@ public class killYou extends Event {
   public killYou(final Address source) {
     super(source);
   }
-  
-  @SyntheticMember
-  private final static long serialVersionUID = 588368462L;
 }

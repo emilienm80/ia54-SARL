@@ -8,10 +8,10 @@ import org.eclipse.xtext.xbase.lib.util.ToStringBuilder;
 @SarlSpecification("0.8")
 @SarlElementType(15)
 @SuppressWarnings("all")
-public class toPeople extends Event {
+public class resetMaxPeople extends Event {
   public final int id;
   
-  public toPeople(final int id) {
+  public resetMaxPeople(final int id) {
     this.id = id;
   }
   
@@ -25,7 +25,7 @@ public class toPeople extends Event {
       return false;
     if (getClass() != obj.getClass())
       return false;
-    toPeople other = (toPeople) obj;
+    resetMaxPeople other = (resetMaxPeople) obj;
     if (other.id != this.id)
       return false;
     return super.equals(obj);
@@ -42,7 +42,7 @@ public class toPeople extends Event {
   }
   
   /**
-   * Returns a String representation of the toPeople event's attributes only.
+   * Returns a String representation of the resetMaxPeople event's attributes only.
    */
   @SyntheticMember
   @Pure
