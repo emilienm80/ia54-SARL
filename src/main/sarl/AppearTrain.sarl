@@ -45,7 +45,6 @@ agent AppearTrain {
 			def run(){
 				if(rand.nextInt(100) > 95){
 					typeof(Train).spawn(SelectedPartner)
-					new TrainHere().emit
 				}
 			}
 		}, 0, 5000)

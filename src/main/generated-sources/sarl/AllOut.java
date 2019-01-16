@@ -7,14 +7,14 @@ import io.sarl.lang.core.Event;
 @SarlSpecification("0.8")
 @SarlElementType(15)
 @SuppressWarnings("all")
-public class WantToGoIn extends Event {
+public class AllOut extends Event {
   @SyntheticMember
-  public WantToGoIn() {
+  public AllOut() {
     super();
   }
   
   @SyntheticMember
-  public WantToGoIn(final Address source) {
+  public AllOut(final Address source) {
     super(source);
   }
   

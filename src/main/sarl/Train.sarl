@@ -27,6 +27,7 @@ agent Train {
 	var SelectedPartner : UUID
 	var rand : Random
 	var goOut : int
+	var compt = 0
 
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
@@ -35,11 +36,15 @@ agent Train {
 		info("The agent was started.")
 		SelectedPartner = occurrence.parameters.get(0) as UUID
 		rand = new Random()
+		new TrainHere().emit
 		goOut = rand.nextInt(5)
 		new WantToGoOut(goOut).emit
 		for(var i = 0; i < goOut; i++){
 			typeof(People).spawn(SelectedPartner, false)
 		}
+	}
+	
+	on CanGo{
 		killMe
 	}
 
@@ -55,6 +60,10 @@ agent Train {
 	}*/
 
 	on AgentSpawned {
+		compt++
+		if(compt >= goOut){
+			new AllOut().emit
+		}
 		// A new agent has been spawned in our context.
 	}
 

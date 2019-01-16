@@ -17,4 +17,7 @@ public class DontWantToGoIn extends Event {
   public DontWantToGoIn(final Address source) {
     super(source);
   }
+  
+  @SyntheticMember
+  private final static long serialVersionUID = 588368462L;
 }

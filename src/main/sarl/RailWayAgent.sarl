@@ -27,6 +27,8 @@ agent RailWayAgent {
 	var toGo  = 0
 	var notToGo = 0
 	var maxPeople : int
+	var in = false
+	var out = false
 
 	on Initialize {
 		// Event trigger before the agent begin to live or to be used.
@@ -48,6 +50,10 @@ agent RailWayAgent {
 			new GoInTrain().emit
 			maxPeople = maxPeople - toGo
 			new resetMaxPeople(maxPeople).emit
+			in = true
+			if ((in) && (out)) {
+				new CanGo().emit
+			}
 		}
 	}
 	
@@ -61,6 +67,17 @@ agent RailWayAgent {
 			new GoInTrain().emit
 			maxPeople = maxPeople - toGo
 			new resetMaxPeople(maxPeople).emit
+			in = true
+			if ((in) && (out)){
+				new CanGo().emit
+			}
+		}
+	}
+	
+	on AllOut{
+		out = true
+		if ((in) && (out)) {
+			new CanGo().emit
 		}
 	}
 

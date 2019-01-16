@@ -32,6 +32,10 @@ event TrainHere
 
 event WantToGoIn
 
+event AllOut
+
+event CanGo
+
 event DontWantToGoIn
 
 event GoInTrain
